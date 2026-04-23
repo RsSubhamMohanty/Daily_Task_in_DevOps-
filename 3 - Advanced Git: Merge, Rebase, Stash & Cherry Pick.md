@@ -87,6 +87,70 @@ Answer in your notes:
 ## What is a merge conflict? (try creating one intentionally by editing the same line in both branches)
 
      - Merge conflict: A merge conflict happens when Git cannot automatically combine changes, usually because the same line in a file was edited differently in both branches. It must be resolved manually.
+
+
+## Task 2: Git Rebase
+
+## Create a branch feature-dashboard from main, add 2-3 commits
+
+        - git checkout main
+        - git checkout -b feature-dashboard
+Add 2–3 commits in feature-dashboard
+
+        - echo "Dashboard page" >> app.txt
+        - git add .
+        - git commit -m "Added dashboard page"
+
+        - echo "Dashboard stats" >> app.txt
+        - git add .
+        - git commit -m "Added dashboard stats"
+
+        - echo "Dashboard styling" >> app.txt
+        - git add .
+        - git commit -m "Added dashboard styling"
+
+## While on main, add a new commit (so main moves ahead)
+
+       - git checkout main
+
+       - echo "Homepage update" >> app.txt
+       - git add .
+       - git commit -m "Updated homepage" 
+
+ ## Switch to feature-dashboard and rebase it onto main
+
+       - git checkout feature-dashboard
+
+Rebase onto main 
+
+       - git rebase main
+
+## Observe your git log --oneline --graph --all — how does the history look compared to a merge?
+
+        - git log --oneline --graph --all 
+
+## Answer in your notes:
+## What does rebase actually do to your commits?      
+
+     - Rebase takes your branch commits, moves them to the latest base branch, and reapplies them on top of it as new commits.
+
+## How is the history different from a merge?
+
+     - Rebase creates a clean, straight history without merge commits. Merge keeps branch history and adds a merge commit.
+
+## Why should you never rebase commits that have been pushed and shared with others?
+
+    - Rebase rewrites commit history by creating new commit IDs, which can cause confusion and conflicts for others who already pulled the old commits.
+
+## When would you use rebase vs merge?
+
+    - Use rebase for cleaning up local branch history before merging. Use merge when combining shared branches and preserving complete history.    
+     
+     
+        
+       
+        
+     
      
           
           
