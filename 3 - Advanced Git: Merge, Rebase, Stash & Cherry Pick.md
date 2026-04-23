@@ -145,7 +145,71 @@ Rebase onto main
 ## When would you use rebase vs merge?
 
     - Use rebase for cleaning up local branch history before merging. Use merge when combining shared branches and preserving complete history.    
-     
+
+
+## Squash Commit vs Merge Commit
+
+Create a branch feature-profile, add 4-5 small commits (typo fix, formatting, etc.)
+
+     - git checkout main
+     - git checkout -b feature-profile
+     - echo "Profile page created" >> app.txt
+     - git add .
+     - git commit -m "Created profile page"
+     - echo "Fixed typo in profile" >> app.txt
+     - git add .
+     - git commit -m "Fixed typo"
+     - echo "Formatted profile page" >> app.txt
+     - git add .
+     - git commit -m "Formatting update"
+     - echo "Added profile image" >> app.txt
+     - git add .
+     - git commit -m "Added profile image"
+
+## Merge it into main using --squash — what happens?
+
+     - git checkout main
+     - git merge --squash feature-profile
+     - git commit -m "Added profile feature"
+
+## Check git log — how many commits were added to main?
+
+     - git log --oneline --graph
+
+## Now create another branch feature-settings, add a few commits
+
+     - git checkout -b feature-settings
+     - echo "Settings page created" >> app.txt
+     - git add .
+     - git commit -m "Created settings page"
+
+     - echo "Dark mode added" >> app.txt
+     - git add .
+     - git commit -m "Added dark mode"
+
+     - echo "Notification settings added" >> app.txt
+     - git add .
+     - git commit -m "Added notifications"
+
+## Merge it into main without --squash (regular merge) — compare the history
+
+      - git checkout main
+      - git merge feature-settings
+      - git log --oneline --graph
+
+## What does squash merging do?
+
+      - Squash merge combines all branch commits into one single commit before merging into main.
+
+## When would you use squash merge vs regular merge?
+
+      - Use squash merge when branch has many small messy commits and you want clean history.
+      - Use regular merge when you want to keep all commit history.  
+
+## What is the trade-off of squashing?
+
+      - You lose individual commit history of that branch because all commits become one commit.
+      
      
         
        
